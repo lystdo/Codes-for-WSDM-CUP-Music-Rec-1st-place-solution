@@ -1,0 +1,5 @@
+time,model,feat_cnt,type,lr,n_leaf,n_depth,min_data,feature_frac,bagging_frac,bagging_freq,l1,l2,min_gain,hessian,sample_rate,bst_rnd,trn_loss,trn_auc,val_loss,val_auc
+2017/12/12 22:20,LightGBM_baseline_new,385,gbdt,0.1,99,10,1306,0.6866,0.9054,1,6.37,65200,0,0.1,0,7732,0.46055,0.86678,0.58584,0.73963
+2017-12-15 10:42:55,LightGBM_baseline_new,385,dart,0.5,99,10,1306,0.6866,0.9054,1,6.37,65200,0,0.1,0,4998,0.47348,0.85819,0.58506,0.7386
+2017-12-17 12:02:54,LightGBM_baseline_song_context_prob,390,gbdt,0.5,99,10,1306,0.6866,0.9054,1,6.37,65200,0,0.1,0,1302,0.46954,0.85925,0.59024,0.73556
+2017/12/12 11:49,LightGBM_baseline_new,385,gbdt,0.5,99,10,1306,0.6866,0.9054,1,6.37,65200,0,0.1,0,1304,0.4704,0.8586,0.59103,0.73458
