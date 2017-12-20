@@ -14,7 +14,7 @@ input/validation/source_data
 input/validation/temporal_data
 
 
-Put the data in the folder "source_data", then run script/run.sh, features will be extracted.
+Put the data in the folder "source_data", then run script/run.sh, features will be extracted. For validation, you need to prepare data by hand, and create a "test_label.csv" file with "target" field.
 
 
 The hyper-parameters is recorded in lgb_record.csv and nn_record.csv, you can try it directly. If everything is right, you should be able to get 0.744+ with LightGBM, and 0.742+ with 30-ensemble of NNs.
