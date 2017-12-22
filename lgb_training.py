@@ -45,7 +45,7 @@ test = test.merge(member, on='msno', how='left')
 del member
 gc.collect()
 
-member_add = pd.read_csv('./input/validation/members_add.csv')
+member_add = pd.read_csv('./input/%s/members_add.csv'%folder)
 
 cols = ['msno', 'msno_song_length_mean', 'artist_msno_cnt']
 train = train.merge(member_add[cols], on='msno', how='left')
