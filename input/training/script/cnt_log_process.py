@@ -96,7 +96,7 @@ features = ['song_length', 'song_rec_cnt', 'artist_song_cnt', 'composer_song_cnt
         'composer_rec_cnt', 'lyricist_rec_cnt', 'genre_rec_cnt']
 for feat in features:
     song[feat] = np.log1p(song[feat])
-song['song_length'] = np.log1p(song['song_length'])
+#song['song_length'] = np.log1p(song['song_length'])
 song.to_csv('../temporal_data/songs_id_cnt.csv', index=False)
 
 train.to_csv('../temporal_data/train_id_cnt.csv', index=False)
