@@ -15,7 +15,7 @@ song_cnt = concat['song_id'].max() + 1
 artist_cnt = int(song['artist_name'].max() + 1)
 
 ## svd for user-song pairs
-n_component = 64
+n_component = 48
 
 print(len(concat))
 
