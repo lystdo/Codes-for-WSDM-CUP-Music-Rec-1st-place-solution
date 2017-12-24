@@ -142,13 +142,11 @@ context_features = ['after_artist_same', 'after_song_rec_cnt', 'after_timestamp'
         'msno_25_after_cnt', 'msno_25_before_cnt', 'msno_50000_after_cnt', \
         'msno_50000_before_cnt', 'msno_5000_after_cnt', 'msno_5000_before_cnt', \
         'msno_500_after_cnt', 'msno_500_before_cnt', 'msno_source_screen_name_prob', \
-        'msno_source_system_tab_prob', 'msno_source_type_prob', \
-        'song_50000_after_cnt', 'song_50000_before_cnt', \
-        'timestamp', 'msno_artist_name_prob', 'msno_first_genre_id_prob', \
+        'msno_source_system_tab_prob', 'msno_source_type_prob', 'msno_till_now_cnt', \
+        'registration_init_time', 'song_50000_after_cnt', 'song_50000_before_cnt', \
+        'song_till_now_cnt', 'timestamp', 'msno_artist_name_prob', 'msno_first_genre_id_prob', \
         'msno_xxx_prob', 'msno_language_prob', 'msno_yy_prob', 'msno_source_prob', \
-        'song_till_now_cnt', 'msno_till_now_cnt', 'song_source_system_tab_prob', \
-        'song_source_screen_name_prob', 'song_source_type_prob', \
-        'registration_init_time']
+        'song_source_system_tab_prob', 'song_source_screen_name_prob', 'song_source_type_prob']
 
 train_context = train[context_features].values
 test_context = test[context_features].values
@@ -161,12 +159,12 @@ del train
 del test
 gc.collect()
 
-usr_features = ['bd', 'expiration_date', 'msno_source_screen_name_0', \
+usr_features = ['bd', 'expiration_date', 'msno_rec_cnt', 'msno_source_screen_name_0', \
         'msno_source_screen_name_1', 'msno_source_screen_name_10', 'msno_source_screen_name_11', \
-        'msno_source_screen_name_12', 'msno_source_screen_name_13', \
+        'msno_source_screen_name_12', 'msno_source_screen_name_13', 'msno_source_screen_name_14', \
         'msno_source_screen_name_17', \
         'msno_source_screen_name_18', 'msno_source_screen_name_19', 'msno_source_screen_name_2', \
-        'msno_source_screen_name_20', 'msno_source_screen_name_22', 'msno_source_screen_name_4', \
+        'msno_source_screen_name_20', 'msno_source_screen_name_21', 'msno_source_screen_name_3', 'msno_source_screen_name_4', \
         'msno_source_screen_name_5', 'msno_source_screen_name_6', 'msno_source_screen_name_7', \
         'msno_source_screen_name_8', 'msno_source_screen_name_9', 'msno_source_system_tab_0', \
         'msno_source_system_tab_1', 'msno_source_system_tab_2', 'msno_source_system_tab_3', \
@@ -177,24 +175,24 @@ usr_features = ['bd', 'expiration_date', 'msno_source_screen_name_0', \
         'msno_source_type_3', 'msno_source_type_4', 'msno_source_type_5', \
         'msno_source_type_6', \
         'msno_source_type_7', 'msno_source_type_8', 'msno_source_type_9', \
-        'registration_init_time', \
-        'msno_song_length_mean', 'artist_msno_cnt', 'msno_artist_song_cnt_mean', 'msno_artist_rec_cnt_mean', \
-        'msno_song_rec_cnt_mean', 'msno_yy_mean', 'msno_song_length_std', 'msno_artist_song_cnt_std', \
-        'msno_artist_rec_cnt_std', 'msno_song_rec_cnt_std', 'msno_yy_std', 'artist_msno_cnt', 'msno_rec_cnt', \
-        'msno_timestamp_mean', 'msno_timestamp_std']
+        'msno_timestamp_mean', 'msno_timestamp_std', 'registration_init_time', \
+        'msno_song_length_mean', 'msno_artist_song_cnt_mean', 'msno_artist_rec_cnt_mean', \
+        'msno_song_rec_cnt_mean', 'msno_yy_mean', 'msno_song_length_std', \
+        'msno_artist_song_cnt_std', 'msno_artist_rec_cnt_std', 'msno_song_rec_cnt_std', \
+        'msno_yy_std', 'artist_msno_cnt']
 
 usr_feat = member[usr_features].values
 usr_feat = StandardScaler().fit_transform(usr_feat)
 
 song_features = ['artist_rec_cnt', 'artist_song_cnt', 'composer_song_cnt', \
         'genre_rec_cnt', 'genre_song_cnt', 'song_length', \
-        'song_timestamp_mean', 'song_timestamp_std', \
-        'xxx_rec_cnt', 'xxx_song_cnt', 'yy', 'yy_song_cnt', 'song_rec_cnt']
+        'song_rec_cnt', 'song_timestamp_mean', 'song_timestamp_std', \
+        'xxx_rec_cnt', 'xxx_song_cnt', 'yy', 'yy_song_cnt']
 
 song_feat = song[song_features].values
 song_feat = StandardScaler().fit_transform(song_feat)
 
-n_factors = 64
+n_factors = 48
 
 usr_component_features = ['member_component_%d'%i for i in range(n_factors)]
 song_component_features = ['song_component_%d'%i for i in range(n_factors)]
