@@ -28,6 +28,7 @@ rating = (rating > 0) * 1.0
 
 [u, s, vt] = svds(rating, k=n_component)
 print(s[::-1])
+s_song = np.diag(s[::-1])
 
 members_topics = pd.DataFrame(u[:, ::-1])
 members_topics.columns = ['member_component_%d'%i for i in range(n_component)]
@@ -55,6 +56,7 @@ rating = np.log1p(rating_tmp) * 0.3 + (rating_tmp > 0) * 1.0
 
 [u, s, vt] = svds(rating, k=n_component)
 print(s[::-1])
+s_artist = np.diag(s[::-1])
 
 members_topics = pd.DataFrame(u[:, ::-1])
 members_topics.columns = ['member_artist_component_%d'%i for i in range(n_component)]
@@ -90,15 +92,15 @@ for i in range(len(tr)):
     msno_idx = tr['msno'].values[i]
     song_idx = tr['song_id'].values[i]
     
-    train_dot[i, 0] = np.dot(member_embeddings[msno_idx], song_embeddings[song_idx])
-    train_dot[i, 1] = np.dot(member_artist_embeddings[msno_idx], song_artist_embeddings[song_idx])
+    train_dot[i, 0] = np.dot(member_embeddings[msno_idx], np.dot(s_song, song_embeddings[song_idx]))
+    train_dot[i, 1] = np.dot(member_artist_embeddings[msno_idx], np.dot(s_artist, song_artist_embeddings[song_idx]))
 
 for i in range(len(te)):
     msno_idx = te['msno'].values[i]
     song_idx = te['song_id'].values[i]
     
-    test_dot[i, 0] = np.dot(member_embeddings[msno_idx], song_embeddings[song_idx])
-    test_dot[i, 1] = np.dot(member_artist_embeddings[msno_idx], song_artist_embeddings[song_idx])
+    test_dot[i, 0] = np.dot(member_embeddings[msno_idx], np.dot(s_song, song_embeddings[song_idx]))
+    test_dot[i, 1] = np.dot(member_artist_embeddings[msno_idx], np.dot(s_artist, song_artist_embeddings[song_idx]))
 
 tr['song_embeddings_dot'] = train_dot[:, 0]
 tr['artist_embeddings_dot'] = train_dot[:, 1]
