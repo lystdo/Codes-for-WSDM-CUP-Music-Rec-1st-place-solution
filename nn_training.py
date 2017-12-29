@@ -388,10 +388,10 @@ def get_model(K, K0, lw=1e-4, lw1=1e-4, lr=1e-3, act='relu', batchnorm=False):
     
     # top model
     preds0 = FunctionalDense(K*2, joint_embeddings, batchnorm=batchnorm, act=act, name='preds_0')
-    preds1 = FunctionalDense(K*2, preds0, batchnorm=batchnorm, act=act, name='preds_1')
-    preds2 = FunctionalDense(K*2, preds1, batchnorm=batchnorm, act=act, name='preds_2')
+    preds1 = FunctionalDense(K*2, concatenate([joint_embeddings, preds0]), batchnorm=batchnorm, act=act, name='preds_1')
+    preds2 = FunctionalDense(K*2, concatenate([joint_embeddings, preds0, preds1]), batchnorm=batchnorm, act=act, name='preds_2')
     
-    preds = concatenate([preds0, preds1, preds2], name='prediction_aggr')
+    preds = concatenate([joint_embeddings, preds0, preds1, preds2], name='prediction_aggr')
     preds = Dropout(0.5, name='prediction_dropout')(preds)
     preds = Dense(1, activation='sigmoid', name='prediction')(preds)
         
